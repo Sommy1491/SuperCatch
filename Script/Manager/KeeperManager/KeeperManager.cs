@@ -14,7 +14,7 @@ namespace SuperCatch
             if(Input.OnDrag(gloves))
             {
                 var mousePos = UnityEngine.Input.mousePosition;
-                mousePos.z = 10;
+                mousePos.z = Mathf.Abs(Camera.main.transform.position.z - gloves.transform.position.z);
                 gloves.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
             }
         }
