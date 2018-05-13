@@ -11,9 +11,11 @@ namespace SuperCatch
 
         private void Update()
         {
-            if(Input.OnTap(gloves))
+            if(Input.OnDrag(gloves))
             {
-                print("gloves");
+                var mousePos = UnityEngine.Input.mousePosition;
+                mousePos.z = 10;
+                gloves.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
             }
         }
     }
