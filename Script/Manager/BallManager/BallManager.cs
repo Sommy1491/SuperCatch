@@ -9,9 +9,9 @@ namespace SuperCatch
         [SerializeField]
         private GameObject ballThrowPoint;
         [SerializeField]
-        private GameObject ballStrikePoint;
+        public GameObject ballStrikePoint;
         [SerializeField]
-        private GameObject ballCatchPoint;
+        public GameObject ballCatchPoint;
         [SerializeField]
         private GameObject ballPrefab;
 
@@ -30,7 +30,7 @@ namespace SuperCatch
             if(UnityEngine.Input.GetKeyUp(KeyCode.Space))
             {
                 GameObject ball = Instantiate(ballPrefab, ballThrowPoint.transform.position, Quaternion.identity);
-                ball.GetComponent<Rigidbody>().velocity = Physics.ProjectileVelocity(ballThrowPoint.transform.position, ballStrikePoint.transform.position, 30);
+                ball.GetComponent<Ball>().ProjectBall(ballThrowPoint.transform.position, ballStrikePoint.transform.position, 15);
             }
 
             Physics.ProjectileVelocity(ballThrowPoint.transform.position, ballStrikePoint.transform.position, 15);
