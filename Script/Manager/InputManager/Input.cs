@@ -13,7 +13,7 @@ namespace SuperCatch
             if(UnityEngine.Input.GetMouseButtonDown(0))
             {
                 UnityEngine.RaycastHit hit;
-                UnityEngine.Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+                UnityEngine.Ray ray = UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
 
                 if(UnityEngine.Physics.Raycast(ray, out hit))
                 {
@@ -30,7 +30,7 @@ namespace SuperCatch
             if (UnityEngine.Input.GetMouseButtonUp(0))
             {
                 UnityEngine.RaycastHit hit;
-                UnityEngine.Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+                UnityEngine.Ray ray = UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
 
                 if (UnityEngine.Physics.Raycast(ray, out hit))
                 {
