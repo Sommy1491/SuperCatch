@@ -7,7 +7,6 @@ namespace SuperCatch
     public class Ball : MonoBehaviour
     {
         private BallManager ballManager;
-        private float angle;
         private bool isStrike = false;
 
         private void Start()
@@ -17,7 +16,6 @@ namespace SuperCatch
 
         public void ProjectBall(Vector3 from, Vector3 to, float angle)
         {
-            this.angle = angle;
             this.GetComponent<Rigidbody>().velocity = Physics.ProjectileVelocity(from, to, angle);
         }
 
@@ -25,9 +23,11 @@ namespace SuperCatch
         {
             if (!isStrike)
             {
-                Debug.Log("Enter");
-                isStrike = true;
-                this.GetComponent<Rigidbody>().velocity = Physics.ProjectileVelocity(ballManager.ballStrikePoint.transform.position, ballManager.ballCatchPoint.transform.position, angle);
+                if (collider.gameObject.name.Equals("Pitch"))
+                {
+                    isStrike = true;
+                    this.GetComponent<Rigidbody>().velocity = Physics.ProjectileVelocity(ballManager.ballPitchPoint.transform.position, ballManager.ballCatchPoint.transform.position, ballManager.ballPitchPoint.GetComponent<AngleOfProjection>().projectionAngle);
+                }
             }
         }
     }

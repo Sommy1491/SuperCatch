@@ -9,7 +9,9 @@ namespace SuperCatch
         [SerializeField]
         private GameObject ballThrowPoint;
         [SerializeField]
-        public GameObject ballStrikePoint;
+        public GameObject ballPitchPoint;
+        [SerializeField]
+        public GameObject ballBatPoint;
         [SerializeField]
         public GameObject ballCatchPoint;
         [SerializeField]
@@ -30,11 +32,17 @@ namespace SuperCatch
             if(UnityEngine.Input.GetKeyUp(KeyCode.Space))
             {
                 GameObject ball = Instantiate(ballPrefab, ballThrowPoint.transform.position, Quaternion.identity);
-                ball.GetComponent<Ball>().ProjectBall(ballThrowPoint.transform.position, ballStrikePoint.transform.position, 15);
+                ball.GetComponent<Ball>().ProjectBall(ballThrowPoint.transform.position, ballPitchPoint.transform.position, ballThrowPoint.GetComponent<AngleOfProjection>().projectionAngle);
             }
 
-            Physics.ProjectileVelocity(ballThrowPoint.transform.position, ballStrikePoint.transform.position, 15);
-            Physics.ProjectileVelocity(ballStrikePoint.transform.position, ballCatchPoint.transform.position, 15);
+            
+        }
+
+        private void OnDrawGizmos()
+        {
+            Physics.ProjectileVelocity(ballThrowPoint.transform.position, ballPitchPoint.transform.position, ballThrowPoint.GetComponent<AngleOfProjection>().projectionAngle);
+            Physics.ProjectileVelocity(ballPitchPoint.transform.position, ballBatPoint.transform.position, ballPitchPoint.GetComponent<AngleOfProjection>().projectionAngle);
+            Physics.ProjectileVelocity(ballBatPoint.transform.position, ballCatchPoint.transform.position, ballBatPoint.GetComponent<AngleOfProjection>().projectionAngle);
         }
     }
 }
