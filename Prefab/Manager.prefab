@@ -217,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1049305499219062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: 2.08, z: 10.19}
+  m_LocalPosition: {x: 3.09, y: 2.08, z: 10.19}
   m_LocalScale: {x: 0.1850056, y: 0.18500562, z: 0.18500562}
   m_Children: []
   m_Father: {fileID: 4020888478142070}
@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1071929592781324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81, y: 2.64, z: -14.08}
+  m_LocalPosition: {x: 0.49, y: 1.08, z: -14.08}
   m_LocalScale: {x: 0.09355613, y: 0.09355592, z: 0.09355592}
   m_Children: []
   m_Father: {fileID: 4020888478142070}
@@ -285,7 +285,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236454625257854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6, z: -7.31}
+  m_LocalPosition: {x: 2.27, y: 1.52, z: -7.31}
   m_LocalScale: {x: 0.18501, y: 0.18501, z: 0.18501}
   m_Children: []
   m_Father: {fileID: 4020888478142070}
@@ -551,6 +551,7 @@ MonoBehaviour:
   ballBatPoint: {fileID: 1236454625257854}
   ballCatchPoint: {fileID: 1071929592781324}
   ballPrefab: {fileID: 1367627030264010, guid: 456c02d1c8109c140a6868d5f9c4e3e7, type: 2}
+  ballMotion: {fileID: 11400000, guid: 47b5ff3b657b4544e85e59e85c4a4307, type: 2}
 --- !u!114 &114567663650369534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -623,4 +624,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659292a264950c45ae9a0257a6664c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectionAngle: 16.51
+  projectionAngle: 6.8

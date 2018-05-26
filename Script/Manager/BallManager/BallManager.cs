@@ -16,7 +16,8 @@ namespace SuperCatch
         public GameObject ballCatchPoint;
         [SerializeField]
         private GameObject ballPrefab;
-
+        [SerializeField]
+        public BallMotion ballMotion;
         private void Awake()
         {
             
@@ -32,7 +33,6 @@ namespace SuperCatch
             if(UnityEngine.Input.GetKeyUp(KeyCode.Space))
             {
                 GameObject ball = Instantiate(ballPrefab, ballThrowPoint.transform.position, Quaternion.identity);
-                ball.GetComponent<Ball>().ProjectBall(ballThrowPoint.transform.position, ballPitchPoint.transform.position, ballThrowPoint.GetComponent<AngleOfProjection>().projectionAngle);
             }
 
             
@@ -40,9 +40,24 @@ namespace SuperCatch
 
         private void OnDrawGizmos()
         {
-            Physics.ProjectileVelocity(ballThrowPoint.transform.position, ballPitchPoint.transform.position, ballThrowPoint.GetComponent<AngleOfProjection>().projectionAngle);
-            Physics.ProjectileVelocity(ballPitchPoint.transform.position, ballBatPoint.transform.position, ballPitchPoint.GetComponent<AngleOfProjection>().projectionAngle);
-            Physics.ProjectileVelocity(ballBatPoint.transform.position, ballCatchPoint.transform.position, ballBatPoint.GetComponent<AngleOfProjection>().projectionAngle);
+            ballMotion.paths[0].point_1 = ballThrowPoint.transform.position;
+            ballMotion.paths[0].point_2 = ballPitchPoint.transform.position;
+
+            ballMotion.paths[1].point_1 = ballPitchPoint.transform.position;
+            ballMotion.paths[1].point_2 = ballBatPoint.transform.position;
+
+            ballMotion.paths[2].point_1 = ballBatPoint.transform.position;
+            ballMotion.paths[2].point_2 = ballCatchPoint.transform.position;
+
+            CreatePath();
+        }
+
+        private void CreatePath()
+        {
+            foreach(Path path in ballMotion.paths)
+            {
+                Physics.ProjectileVelocity(path);
+            }
         }
     }
 }
