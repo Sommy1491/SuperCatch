@@ -19,16 +19,16 @@ namespace SuperCatch
 
         private void Update()
         {
-            if (currentPathIndex < ballManager.ballMotion.paths.Length)
+            if (currentPathIndex < ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths.Length)
             {
                 amtToMove += speed * Time.deltaTime;
                 if (amtToMove <= pathRange)
-                    this.transform.position = Physics.getTrajectoryPoint(ballManager.ballMotion.paths[currentPathIndex], amtToMove);
+                    this.transform.position = Physics.getTrajectoryPoint(ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex], amtToMove);
 
                 else
                 {
                     currentPathIndex++;
-                    if (currentPathIndex < ballManager.ballMotion.paths.Length)
+                    if (currentPathIndex < ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths.Length)
                         ResetPathValue();
                 }
             }
@@ -39,14 +39,14 @@ namespace SuperCatch
             amtToMove = 0;
 
             //.........Apply False Physics to follow follow the Trajectory(Speed is given by user)
-            if (!ballManager.ballMotion.paths[currentPathIndex].isTruePhysics)
-                speed = ballManager.ballMotion.paths[currentPathIndex].pathSpeed;
+            if (!ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex].isTruePhysics)
+                speed = ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex].pathSpeed;
 
             //........Apply True Physics to follow the Trajectory(Speed is calculated by true equation)
             else
-                speed = Physics.ProjectileVelocity(ballManager.ballMotion.paths[currentPathIndex]).magnitude;
+                speed = Physics.ProjectileVelocity(ballManager.motionSampleSet.motionPrefab[currentPathIndex].paths[currentPathIndex]).magnitude;
 
-            pathRange = Physics.getTrajectoryRange(ballManager.ballMotion.paths[currentPathIndex]);
+            pathRange = Physics.getTrajectoryRange(ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex]);
         }
     }
 }
