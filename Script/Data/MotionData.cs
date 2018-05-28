@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SuperCatch
 {
-    [CreateAssetMenu(fileName = "NewScriptableObject", menuName = "ScriptableObject/MotionPrefab", order = 2)]
-    public class MotionPrefab : ScriptableObject
+    [CreateAssetMenu(fileName = "NewScriptableObject", menuName = "ScriptableObject/MotionData", order = 2)]
+    public class MotionData : ScriptableObject
     {
         public Path[] paths = new Path[3];
     }

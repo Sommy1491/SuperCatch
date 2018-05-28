@@ -7,19 +7,11 @@ namespace SuperCatch
     public class BallManager : MonoBehaviour
     {
         [SerializeField]
-        private GameObject ballThrowPoint;
-        [SerializeField]
-        public GameObject ballPitchPoint;
-        [SerializeField]
-        public GameObject ballBatPoint;
-        [SerializeField]
-        public GameObject ballCatchPoint;
-        [SerializeField]
         private GameObject ballPrefab;
         [SerializeField]
-        public MotionSampleSet motionSampleSet;
+        public MotionPrefab motionPrefab;
         [SerializeField]
-        public int currentMotionIndex;
+        private bool showCurrentPath;
 
         private void Awake()
         {
@@ -29,6 +21,29 @@ namespace SuperCatch
         private void Start()
         {
             
+        }
+
+        private void Update()
+        {
+            if(UnityEngine.Input.GetKeyUp(KeyCode.Space))
+            {
+                //Instatiate ball at ballThrowPoint which is paths[0].point_1
+                GameObject ball = Instantiate(ballPrefab, motionPrefab.motionData.paths[0].point_1, Quaternion.identity);
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (motionPrefab != null)
+            {
+                if (showCurrentPath)
+                {
+                    foreach (Path path in motionPrefab.motionData.paths)
+                    {
+                        Physics.ProjectileVelocity(path);
+                    }
+                }
+            }
         }
     }
 }

@@ -6,11 +6,12 @@ namespace SuperCatch
 {
     public class Ball : MonoBehaviour
     {
-        public float speed;
-        public float pathRange;
+        private float pathSpeed;
+        private float pathRange;
         private float amtToMove;
         private BallManager ballManager;
         private int currentPathIndex = 0;
+
         private void Start()
         {
             ballManager = Manager.getInstance().ballManager;
@@ -19,16 +20,16 @@ namespace SuperCatch
 
         private void Update()
         {
-            if (currentPathIndex < ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths.Length)
+            if (currentPathIndex < ballManager.motionPrefab.motionData.paths.Length)
             {
-                amtToMove += speed * Time.deltaTime;
+                amtToMove += pathSpeed * Time.deltaTime;
                 if (amtToMove <= pathRange)
-                    this.transform.position = Physics.getTrajectoryPoint(ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex], amtToMove);
+                    this.transform.position = Physics.getTrajectoryPoint(ballManager.motionPrefab.motionData.paths[currentPathIndex], amtToMove);
 
                 else
                 {
                     currentPathIndex++;
-                    if (currentPathIndex < ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths.Length)
+                    if (currentPathIndex < ballManager.motionPrefab.motionData.paths.Length)
                         ResetPathValue();
                 }
             }
@@ -39,14 +40,14 @@ namespace SuperCatch
             amtToMove = 0;
 
             //.........Apply False Physics to follow follow the Trajectory(Speed is given by user)
-            if (!ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex].isTruePhysics)
-                speed = ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex].pathSpeed;
+            if (!ballManager.motionPrefab.motionData.paths[currentPathIndex].isTruePhysics)
+                pathSpeed = ballManager.motionPrefab.motionData.paths[currentPathIndex].pathSpeed;
 
             //........Apply True Physics to follow the Trajectory(Speed is calculated by true equation)
             else
-                speed = Physics.ProjectileVelocity(ballManager.motionSampleSet.motionPrefab[currentPathIndex].paths[currentPathIndex]).magnitude;
+                pathSpeed = Physics.ProjectileVelocity(ballManager.motionPrefab.motionData.paths[currentPathIndex]).magnitude;
 
-            pathRange = Physics.getTrajectoryRange(ballManager.motionSampleSet.motionPrefab[ballManager.currentMotionIndex].paths[currentPathIndex]);
+            pathRange = Physics.getTrajectoryRange(ballManager.motionPrefab.motionData.paths[currentPathIndex]);
         }
     }
 }

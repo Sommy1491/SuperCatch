@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SuperCatch
 {
-    public class MotionData : MonoBehaviour
+    public class MotionPrefab : MonoBehaviour
     {
-        public MotionPrefab motionPrefab;
+        public MotionData motionData;        //Scriptable Object that will use to store data of a path of this path prefab
         [SerializeField]
         private GameObject ballThrowPoint;
         [SerializeField]
@@ -17,6 +17,20 @@ namespace SuperCatch
         public GameObject ballCatchPoint;
         [SerializeField]
         private Path[] paths = new Path[3];
+
+        private void Update()
+        {
+            paths[0].point_1 = ballThrowPoint.transform.position;
+            paths[0].point_2 = ballPitchPoint.transform.position;
+
+            paths[1].point_1 = ballPitchPoint.transform.position;
+            paths[1].point_2 = ballBatPoint.transform.position;
+
+            paths[2].point_1 = ballBatPoint.transform.position;
+            paths[2].point_2 = ballCatchPoint.transform.position;
+
+            FetchMotionData();
+        }
 
         private void OnDrawGizmos()
         {
@@ -29,13 +43,13 @@ namespace SuperCatch
             paths[2].point_1 = ballBatPoint.transform.position;
             paths[2].point_2 = ballCatchPoint.transform.position;
 
-            CreatePath();
             FetchMotionData();
+            CreatePath();
         }
 
         private void CreatePath()
         {
-            foreach(Path path in paths)
+            foreach (Path path in paths)
             {
                 Physics.ProjectileVelocity(path);
             }
@@ -43,7 +57,7 @@ namespace SuperCatch
 
         private void FetchMotionData()
         {
-            motionPrefab.paths = this.paths;
+            motionData.paths = this.paths;
         }
     }
 }
