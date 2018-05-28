@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 65342941914641964}
   - component: {fileID: 23299501739560634}
   - component: {fileID: 114138379474520104}
+  - component: {fileID: 114818020908469118}
   m_Layer: 0
   m_Name: Gloves
   m_TagString: Untagged
@@ -141,8 +142,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165354996771436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.64, z: -14.08}
-  m_LocalScale: {x: 0.09355613, y: 0.09355592, z: 0.09355592}
+  m_LocalPosition: {x: 0.47, y: 1.087, z: -13.98}
+  m_LocalScale: {x: 0.21096237, y: 0.2109619, z: 0.2109619}
   m_Children: []
   m_Father: {fileID: 4070907587527868}
   m_RootOrder: 0
@@ -211,7 +212,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165354996771436}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -255,9 +256,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 1152374857326692, guid: 6d44be1bed3054c478a34492cdc58b6d, type: 2}
-  motionPrefab: {fileID: 114226965364620982, guid: 325f98d97726cd24b8014d6cc3e1ea09,
-    type: 2}
+  motionPrefab: {fileID: 0}
   showCurrentPath: 1
+  ballRef: {fileID: 0}
 --- !u!114 &114567663650369534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,3 +284,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2b33fd3c84cb34da2b8df40f3c0e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114818020908469118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165354996771436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d82b198bbe709e4d844f01d45824227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catchAnimator: {fileID: 0}

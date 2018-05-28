@@ -12,6 +12,7 @@ namespace SuperCatch
         public MotionPrefab motionPrefab;
         [SerializeField]
         private bool showCurrentPath;
+        public GameObject ballRef;
 
         private void Awake()
         {
@@ -29,6 +30,7 @@ namespace SuperCatch
             {
                 //Instatiate ball at ballThrowPoint which is paths[0].point_1
                 GameObject ball = Instantiate(ballPrefab, motionPrefab.motionData.paths[0].point_1, Quaternion.identity);
+                ballRef = ball;
             }
         }
 
